@@ -12,10 +12,16 @@ def create_user(db: Session, user_create: UserCreate):
 
     # User 모델에 사용자 데이터 저장
     db_user = User(username=user_create.username,
-                   password=hashed_password,
+                   hashed_password=hashed_password,
                    email=user_create.email)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
 
     return db_user
+
+def get_existing_user(db: Session, user_create: UserCreate):
+    return db.query(User).filter(
+        (User.username == user_create.username) |
+        (User.email == user_create.email)
+    ).first()
