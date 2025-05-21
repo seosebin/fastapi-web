@@ -2,6 +2,8 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from domain.user import user_router
+
 
 app = FastAPI()
 
@@ -24,4 +26,4 @@ async def signup(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 
 
-# POST 처리도 추가하려면 아래에 Form으로 처리 가능
+app.include_router(user_router)
