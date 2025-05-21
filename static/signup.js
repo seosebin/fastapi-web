@@ -52,7 +52,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // 서버에서 반환한 에러 메시지가 있다면 해당 메시지 사용
                 if (errorData && errorData.detail) {
-                    errorMessage = errorData.detail;
+                    // detail이 배열인 경우 (예: validation 에러들)
+                    if (Array.isArray(errorData.detail)) {
+                        errorMessage = errorData.detail.map(err => `${err.loc.join('.')} - ${err.msg}`).join('\n');
+                    } else {
+                        errorMessage = errorData.detail.toString();  // 문자열이거나 단일 객체일 경우
+                    }
+                } else {
+                        errorMessage = JSON.stringify(errorData);  // fallback
                 }
 
                 alert(errorMessage);
