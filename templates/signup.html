@@ -8,11 +8,17 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="/">홈</a>
-            <a href="/login">로그인</a>
-            <a href="/signup">회원가입</a>
-        </nav>
+        <div class="header-content">
+            <!-- 간단 To-Do List 제목 중앙 정렬 -->
+            <div class="header-title">간단 To-Do List</div>
+        
+            <nav>
+                <!-- 메뉴 항목들 오른쪽 정렬 -->
+                <a href="/">홈</a>
+                <a href="/login">로그인</a>
+                <a href="/signup">회원가입</a>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -22,6 +28,10 @@
                 <div class="input-wrapper">
                     <i class="fa fa-user"></i>
                     <input type="text" name="username" placeholder="User ID" required>
+                </div>
+                <div class="input-wrapper">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="input-wrapper">
                     <i class="fa fa-lock"></i>

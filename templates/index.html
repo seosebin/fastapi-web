@@ -2,19 +2,27 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>메인 페이지</title>
+    <title>To-Do List</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <header>
-        <nav>
-            <a href="/">홈</a>
-            <a href="/login">로그인</a>
-            <a href="/signup">회원가입</a>
-        </nav>
+        <div class="header-content">
+            <!-- 간단 To-Do List 제목 중앙 정렬 -->
+            <div class="header-title">간단 To-Do List</div>
+        
+            <nav>
+                <!-- 메뉴 항목들 오른쪽 정렬 -->
+                <a href="/">홈</a>
+                <a href="/login">로그인</a>
+                <a href="/signup">회원가입</a>
+            </nav>
+        </div>
     </header>
+
     <main>
-        <h1>FastAPI 웹 프로젝트에 오신 것을 환영합니다</h1>
+        <h1>환영합니다!</h1>
+        <p>여기서 간단한 To-Do 리스트를 관리하세요!</p>
     </main>
 </body>
 </html>
