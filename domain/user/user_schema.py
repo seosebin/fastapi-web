@@ -1,12 +1,12 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from pydantic_core.core_schema import FieldValidationInfo
 
+
 class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password1: str
     password2: str
-    
 
     # 필드 값이 비어있는지 체크하는 필드 밸리데이터
     @field_validator('username', 'email', 'password1', 'password2')
@@ -31,3 +31,4 @@ class Token(BaseModel):
     access_token: str
     token_type: str
     username: str
+

@@ -3,6 +3,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from domain.user import user_router
+from domain.todo import todo_router
 
 
 app = FastAPI()
@@ -27,3 +28,4 @@ async def signup(request: Request):
 
 
 app.include_router(user_router)
+app.include_router(todo_router)
