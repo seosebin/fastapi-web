@@ -8,21 +8,19 @@
 <body>
     <header>
         <div class="header-content">
-            <!-- 간단 To-Do List 제목 중앙 정렬 -->
-            <div class="header-title">Simple To-Do List</div>
-        
-            <nav>
-                <!-- 메뉴 항목들 오른쪽 정렬 -->
-                <a href="/">Home</a>
-                <a href="/login">Login</a>
-                <a href="/signup">Sign up</a>
-            </nav>
+            <!-- 제목을 링크로 감싸 메인화면으로 이동 -->
+            <a href="/" class="header-title">Simple To-Do List</a>
+
+            <!-- 네비게이션 바 (JS에서 채워짐) -->
+            <nav id="navbar"></nav>
         </div>
     </header>
 
     <main>
-        <h1>환영합니다!</h1>
         <p>여기서 간단한 To-Do 리스트를 관리하세요!</p>
     </main>
+
+    <!-- 로그인 상태 메뉴 렌더링 스크립트 -->
+    <script src="/static/navbar.js"></script>
 </body>
 </html>

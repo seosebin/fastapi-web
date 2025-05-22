@@ -7,39 +7,55 @@ body {
 
 header {
     background-color: #4486F8;
-    padding: 1.5em 2em;
+    padding: 1.5em 0;
     display: flex;
-    justify-content: center; /* 중앙 정렬 */
     align-items: center;
 }
 
 header .header-content {
     display: flex;
-    justify-content: space-between; /* 제목과 메뉴를 양쪽으로 배치 */
+    justify-content: space-between;  /* 양 끝 정렬 */
+    align-items: center;
     width: 100%;
-    max-width: 1200px; /* 최대 너비 설정 (원하는 크기 조절 가능) */
+    padding: 0 2em;
 }
 
-.header-title {
+a.header-title {
     color: white;
-    font-size: 24px; /* 로고 크기 */
+    font-size: 24px; 
     font-weight: bold;
     text-transform: uppercase;
     text-align: left;
-    flex: 1; /* 제목이 가운데에 위치하도록 */
+    flex: 0 0 auto; /* 고정 너비(필요 시 조절) */
+    text-decoration: none; 
+}
+
+nav#navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 40px;
 }
 
 nav {
     display: flex;
-    justify-content: flex-end;
-    gap: 20px;
+    align-items: center;
+    gap: 40px;  
 }
 
-nav a {
+nav a,
+#navbar a,
+#navbar span {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 18px; /* 좀 더 키움 */
+}
+
+/* 링크 호버 */
+nav a:hover,
+#navbar a:hover {
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
 }
 
 main {

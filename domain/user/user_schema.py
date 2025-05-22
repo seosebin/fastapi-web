@@ -24,3 +24,10 @@ class UserCreate(BaseModel):
 
     class Config:
         orm_mode = True  # SQLAlchemy 모델과 Pydantic 모델 간 변환을 가능하게 함
+
+# 로그인 API의 출력 항목인
+# access_token, token_type, username을 속성으로 하는 Token 스키마
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+    username: str
