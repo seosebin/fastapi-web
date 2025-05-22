@@ -14,6 +14,10 @@ class TodoCreate(BaseModel):
             raise ValueError('제목은 빈 값일 수 없습니다.')
         return v
 
+# Todo 상태 수정 요청용 스키마 (is_completed만 수정)
+class TodoUpdate(BaseModel):
+    is_completed: bool
+
 # Todo 응답용 스키마
 class TodoRead(BaseModel):
     id: int
@@ -25,3 +29,8 @@ class TodoRead(BaseModel):
 
     class Config:
         orm_mode = True
+
+# Todo 삭제 응답용 스키마 (삭제 후 상태 반환 등)
+class TodoDelete(BaseModel):
+    id: int
+    message: str
