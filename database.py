@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # MySQL 데이터베이스 연결 URL
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:sebin1234@localhost:3306/user_db"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://user:password@localhost:3306/dbname"
 
 # 엔진 생성 (MySQL용)
 engine = create_engine(

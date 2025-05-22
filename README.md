@@ -2,6 +2,8 @@
 ## 📌 프로젝트 개요
 이 프로젝트는 FastAPI 프레임워크를 기반으로 한 웹 애플리케이션입니다. 사용자는 회원가입과 로그인을 통해 인증된 후, 개인의 To-Do 리스트를 관리할 수 있습니다. 할 일 목록을 조회, 추가, 삭제하는 기능이 제공됩니다.
 
+---
+
 ## 📂 파일 구조
 ```
 fastapi-web/
@@ -31,6 +33,9 @@ fastapi-web/
 │    └── store.js
 └── requirements.txt
 ```
+
+---
+
 ## 🔒 회원 가입 API 명세
 
 | API명   | URL            | 요청 방법 | 설명          |
@@ -80,10 +85,10 @@ fastapi-web/
 
 | API명      | URL                          | 요청 방법  | 설명                  |
 | --------- | ---------------------------- | ------ | ------------------- |
-|  ToDo 조회 | `/api/todo/list`             | GET    | 로그인한 사용자의 투두 리스트 조회 |
-| ToDo 추가     | `/api/todo/create`           | POST   | 로그인한 사용자에 투두 항목 추가  |
-| ToDo 상태 수정  | `/api/todo/update/{todo_id}` | PUT    | 특정 투두 항목의 완료 상태 수정  |
-| ToDo 삭제     | `/api/todo/delete/{todo_id}` | DELETE | 특정 투두 항목 삭제         |
+|  ToDo 조회 | `/api/todo/list`             | GET    | 로그인한 사용자의 ToDo 리스트 조회 |
+| ToDo 추가     | `/api/todo/create`           | POST   | 로그인한 사용자에 ToDo 항목 추가  |
+| ToDo 상태 수정  | `/api/todo/update/{todo_id}` | PUT    | 특정 ToDo 항목의 완료 상태 수정  |
+| ToDo 삭제     | `/api/todo/delete/{todo_id}` | DELETE | 특정 ToDo 항목 삭제         |
 
 ### 요청 데이터
 
@@ -104,3 +109,29 @@ fastapi-web/
 ```
 
 ---
+
+## 🚀 실행 방법
+패키지 설치
+```bash
+pip install -r requirements.txt
+```
+`alembic.ini` 파일에서 본인의 데이터베이스 URL로 수정
+```python
+sqlalchemy.url = mysql+pymysql://user:password@localhost:3306/dbname
+```
+`database.py` 파일에서 본인의 데이터베이스 URL로 수정
+```python
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://user:password@localhost:3306/dbname"
+```
+리비전 파일 생성
+```bash
+alembic revision --autogenerate
+```
+마이그레이션 적용
+```bash
+alembic upgrade head
+```
+서버 실행
+```bash
+uvicorn main:app --reload
+```
