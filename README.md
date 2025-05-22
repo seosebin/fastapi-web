@@ -113,11 +113,11 @@ fastapi-web/
 ## 화면
 
 ### 회원가입 화면
-![Image](https://github.com/user-attachments/assets/cc4cc40f-5f92-416f-a137-50afd92d2924)
+![Image](https://github.com/user-attachments/assets/72fcc515-8423-408b-86a6-85bdcf34225c)
 ### 로그인 화면
-![Image](https://github.com/user-attachments/assets/34c045e0-aeb3-4954-b99b-76b0e8d17b03)
+![Image](https://github.com/user-attachments/assets/bba53f8e-4082-43ed-9cc9-3f0e4ccaa171)
 ### To-Do 리스트 화면
-![Image](https://github.com/user-attachments/assets/56b75530-5b9f-4059-b41c-ac9ea655c2ed)
+![Image](https://github.com/user-attachments/assets/c6802e46-a406-4e81-b20d-dd1889788615)
 
 ---
 
