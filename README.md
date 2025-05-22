@@ -80,10 +80,10 @@ fastapi-web/
 
 | API명      | URL                          | 요청 방법  | 설명                  |
 | --------- | ---------------------------- | ------ | ------------------- |
-| 투두 리스트 조회 | `/api/todo/list`             | GET    | 로그인한 사용자의 투두 리스트 조회 |
-| 투두 추가     | `/api/todo/create`           | POST   | 로그인한 사용자에 투두 항목 추가  |
-| 투두 상태 수정  | `/api/todo/update/{todo_id}` | PUT    | 특정 투두 항목의 완료 상태 수정  |
-| 투두 삭제     | `/api/todo/delete/{todo_id}` | DELETE | 특정 투두 항목 삭제         |
+|  ToDo 조회 | `/api/todo/list`             | GET    | 로그인한 사용자의 투두 리스트 조회 |
+| ToDo 추가     | `/api/todo/create`           | POST   | 로그인한 사용자에 투두 항목 추가  |
+| ToDo 상태 수정  | `/api/todo/update/{todo_id}` | PUT    | 특정 투두 항목의 완료 상태 수정  |
+| ToDo 삭제     | `/api/todo/delete/{todo_id}` | DELETE | 특정 투두 항목 삭제         |
 
 ### 요청 데이터
 
