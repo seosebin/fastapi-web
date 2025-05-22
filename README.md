@@ -16,10 +16,10 @@ fastapi-web/
 │    │    ├── todo_crud.py
 │    │    ├── todo_router.py
 │    │    └── todo_schema.py
-│    ├── user/
-│    │    ├── user_crud.py
-│    │    ├── user_router.py
-│    │    └── user_schema.py
+│    └── user/
+│         ├── user_crud.py
+│         ├── user_router.py
+│         └── user_schema.py
 ├── templates/              # HTML 템플릿 폴더 
 │    ├── index.html
 │    ├── login.html
@@ -107,6 +107,17 @@ fastapi-web/
   "created_at": "2025-05-22T15:00:00"
 }
 ```
+
+---
+
+## 화면
+
+### 회원가입 화면
+![Image](https://github.com/user-attachments/assets/72fcc515-8423-408b-86a6-85bdcf34225c)
+### 로그인 화면
+![Image](https://github.com/user-attachments/assets/bba53f8e-4082-43ed-9cc9-3f0e4ccaa171)
+### To-Do 리스트 화면
+![Image](https://github.com/user-attachments/assets/c6802e46-a406-4e81-b20d-dd1889788615)
 
 ---
 

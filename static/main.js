@@ -26,98 +26,108 @@ document.addEventListener("DOMContentLoaded", () => {
             const todos = await response.json();
 
             // todoList 초기화
-            todoList.innerHTML = "";
+                const incompleteBox = document.getElementById("incomplete-todos").querySelector(".todo-items");
+                const completedBox = document.getElementById("completed-todos").querySelector(".todo-items");
 
-            if (todos.length === 0) {
-                todoList.innerHTML = "<p>등록된 투두가 없습니다.</p>";
-                return;
-            }
+            // **초기화 필수!**
+            incompleteBox.innerHTML = "";
+            completedBox.innerHTML = "";
 
-            todos.forEach(todo => {
-                const todoItem = document.createElement("div");
-                todoItem.classList.add("todo-item");
+                if (todos.length === 0) {
+                    incompleteBox.innerHTML = "<p>등록된 투두가 없습니다.</p>";
+                    return;
+                }
 
-                const toggleBtnText = todo.is_completed ? "미완료" : "완료";
+                todos.forEach(todo => {
+                    // 투두 아이템 생성 코드 유지...
+                    // 아래 예시는 참고용, 위 코드에서 todo-item 생성 부분 수정 필요함
 
-                todoItem.innerHTML = `
-                    <h3>${todo.title}</h3>
-                    <p>${todo.description || ""}</p>
-                    <p>완료 여부: ${todo.is_completed ? "완료" : "미완료"}</p>
-                    <small>생성일: ${new Date(todo.created_at).toLocaleString()}</small>
-                    <button class="toggle-completion-btn" data-id="${todo.id}">${toggleBtnText}</button>
-                    <button class="delete-btn" data-id="${todo.id}">삭제</button>
-                `;
+                    const todoItem = document.createElement("div");
+                    todoItem.classList.add("todo-item");
+                    todoItem.innerHTML = `
+                        <h3>${todo.title}</h3>
+                        <p>${todo.description || ""}</p>
+                        <p>완료 여부: ${todo.is_completed ? "완료" : "미완료"}</p>
+                        <small>생성일: ${new Date(todo.created_at).toLocaleString()}</small>
+                        <button class="toggle-completion-btn" data-id="${todo.id}">${todo.is_completed ? "미완료" : "완료"}</button>
+                        <button class="delete-btn" data-id="${todo.id}">삭제</button>
+                    `;
 
-                // 완료/미완료 버튼 클릭 이벤트
-                const toggleBtn = todoItem.querySelector(".toggle-completion-btn");
-                toggleBtn.addEventListener("click", async (e) => {
-                    const todoId = e.target.getAttribute("data-id");
-                    const newStatus = !(todo.is_completed); // 현재 상태 반대로 설정
+                    // 완료/미완료 토글
+                    const toggleBtn = todoItem.querySelector(".toggle-completion-btn");
+                    toggleBtn.addEventListener("click", async (e) => {
+                        const todoId = e.target.getAttribute("data-id");
+                        const newStatus = !(todo.is_completed);
 
-                    const accessToken = localStorage.getItem("access_token");
-                    if (!accessToken) {
-                        alert("로그인이 필요합니다.");
-                        return;
-                    }
-
-                    try {
-                        const response = await fetch(`/api/todo/update/${todoId}`, {
-                            method: "PUT",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "Authorization": `Bearer ${accessToken}`
-                            },
-                            body: JSON.stringify({
-                                is_completed: newStatus
-                            })
-                        });
-
-                        if (response.ok) {
-                            loadTodoList();  // 상태 수정 후 리스트 새로고침
-                        } else {
-                            const errorData = await response.json();
-                            alert(`오류가 발생했습니다: ${errorData.detail || response.statusText}`);
+                        const accessToken = localStorage.getItem("access_token");
+                        if (!accessToken) {
+                            alert("로그인이 필요합니다.");
+                            return;
                         }
-                    } catch (error) {
-                        alert("서버와 통신 중 오류가 발생했습니다.");
-                        console.error(error);
-                    }
-                });
 
-                // 삭제 버튼 클릭 이벤트
-                const deleteBtn = todoItem.querySelector(".delete-btn");
-                deleteBtn.addEventListener("click", async (e) => {
-                    const todoId = e.target.getAttribute("data-id");
+                        try {
+                            const response = await fetch(`/api/todo/update/${todoId}`, {
+                                method: "PUT",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Authorization": `Bearer ${accessToken}`
+                                },
+                                body: JSON.stringify({
+                                    is_completed: newStatus
+                                })
+                            });
 
-                    const accessToken = localStorage.getItem("access_token");
-                    if (!accessToken) {
-                        alert("로그인이 필요합니다.");
-                        return;
-                    }
-
-                    try {
-                        const response = await fetch(`/api/todo/delete/${todoId}`, {
-                            method: "DELETE",
-                            headers: {
-                                "Authorization": `Bearer ${accessToken}`
+                            if (response.ok) {
+                                loadTodoList();
+                            } else {
+                                const errorData = await response.json();
+                                alert(`오류가 발생했습니다: ${errorData.detail || response.statusText}`);
                             }
-                        });
-
-                        if (response.ok) {
-                            alert("투두가 삭제되었습니다.");
-                            loadTodoList();  // 삭제 후 리스트 새로고침
-                        } else {
-                            const errorData = await response.json();
-                            alert(`오류가 발생했습니다: ${errorData.detail || response.statusText}`);
+                        } catch (error) {
+                            alert("서버와 통신 중 오류가 발생했습니다.");
+                            console.error(error);
                         }
-                    } catch (error) {
-                        alert("서버와 통신 중 오류가 발생했습니다.");
-                        console.error(error);
-                    }
-                });
+                    });
 
-                todoList.appendChild(todoItem);
-            });
+                    // 삭제 버튼
+                    const deleteBtn = todoItem.querySelector(".delete-btn");
+                    deleteBtn.addEventListener("click", async (e) => {
+                        const todoId = e.target.getAttribute("data-id");
+
+                        const accessToken = localStorage.getItem("access_token");
+                        if (!accessToken) {
+                            alert("로그인이 필요합니다.");
+                            return;
+                        }
+
+                        try {
+                            const response = await fetch(`/api/todo/delete/${todoId}`, {
+                                method: "DELETE",
+                                headers: {
+                                    "Authorization": `Bearer ${accessToken}`
+                                }
+                            });
+
+                            if (response.ok) {
+                                alert("투두가 삭제되었습니다.");
+                                loadTodoList();
+                            } else {
+                                const errorData = await response.json();
+                                alert(`오류가 발생했습니다: ${errorData.detail || response.statusText}`);
+                            }
+                        } catch (error) {
+                            alert("서버와 통신 중 오류가 발생했습니다.");
+                            console.error(error);
+                        }
+                    });
+
+                    // 완료/미완료 영역에 추가
+                    if (todo.is_completed) {
+                            completedBox.appendChild(todoItem);
+                        } else {
+                            incompleteBox.appendChild(todoItem);
+                        }
+                    });
 
         } catch (error) {
             console.error("투두 리스트 로드 중 오류 발생:", error);

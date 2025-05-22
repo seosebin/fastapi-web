@@ -13,6 +13,7 @@ header {
     padding: 1.5em 0;
     display: flex;
     align-items: center;
+    flex-shrink: 0; /* 크기 줄어드는거 방지 */
 }
 
 header .header-content {
@@ -20,17 +21,16 @@ header .header-content {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 2em;
+    padding: 0 5em;
 }
 
 a.header-title {
     color: white;
-    font-size: 24px; 
+    font-size: 24px;
     font-weight: bold;
     text-transform: uppercase;
-    text-align: left;
+    text-decoration: none;
     flex: 0 0 auto;
-    text-decoration: none; 
 }
 
 nav#navbar {

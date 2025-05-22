@@ -35,9 +35,23 @@
             </form>
         </div>
 
-        <div id="todo-list" class="todo-list" style="display:none;">
-            <!-- 자바스크립트로 항목이 추가될 예정 -->
+    <div id="todo-list" class="todo-list" style="display:none;">
+        <!-- 미완료된 투두 목록 -->
+        <div id="incomplete-todos" class="todo-section">
+            <h3>📌 진행중</h3>
+            <div class="todo-items">
+                <!-- 여기에 미완료된 투두 아이템들 추가 -->
+            </div>
         </div>
+
+        <!-- 완료된 투두 목록 -->
+        <div id="completed-todos" class="todo-section">
+            <h3>✅ 완료</h3>
+            <div class="todo-items">
+                <!-- 여기에 완료된 투두 아이템들 추가 -->
+            </div>
+        </div>
+    </div>
     </main>
 
     <!-- 로그인 상태 메뉴 렌더링 스크립트 -->

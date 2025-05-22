@@ -23,7 +23,7 @@ header .header-content {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 0 2em;
+    padding: 0 5em;
 }
 
 a.header-title {
@@ -96,8 +96,9 @@ main {
 .todo-form-box h2 {
     text-align: center;
     color: #4486F8;
-    margin-bottom: 30px;
-    font-size: 28px; 
+    margin-bottom: 40px;
+    font-size: 40px; 
+    margin-top: 30px;
 }
 
 /* 입력창 래퍼 */
@@ -127,21 +128,41 @@ main {
 
 /* 버튼 */
 button {
-    width: auto;              /* 버튼 크기를 내용에 맞게 조정 */
-    padding: 6px 12px;        /* 패딩을 줄여서 버튼 크기 감소 */
+    width: auto;              
+    padding: 6px 12px;        
     background-color: #4486F8;
     color: white;
     border: none;
     border-radius: 999px;
-    font-size: 14px;           /* 폰트 크기 줄임 */
+    font-size: 14px;          
     cursor: pointer;
     margin-bottom: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
     background-color: #3163c9;
+    font-weight: bold;
 }
 
+button.delete-btn {
+    background-color: white;       
+    color: #4486F8;                
+    border: 1px solid #4486F8;     
+    border-radius: 999px;          
+    padding: 6px 12px;             
+    cursor: pointer;
+    font-size: 14px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+button.delete-btn:hover {
+    background-color: #c2c2c2;     
+    color: white;                  
+    border-color: #c2c2c2;         
+    font-weight: bold;
+}
 /* 투두 리스트 */
 #todo-list {
     flex: 1;
@@ -152,8 +173,9 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto; /* 세로 스크롤바 활성화 */
     height: 90%; /* 리스트 영역 크기 지정 */
-    max-height: 750px; /* 최대 높이 설정 (너비에 따라 적당히 조정) */
+    max-height: 800px; /* 최대 높이 설정 (너비에 따라 적당히 조정) */
     margin-left: 50px;
+    
 }
 
 .todo-item {
@@ -197,10 +219,34 @@ button[type="submit"] {
     border-radius: 999px;       /* 둥근 모서리 */
     font-size: 16px;            /* 글자 크기 */
     cursor: pointer;           /* 포인터 커서 */
+    margin-top: 30px;
     margin-bottom: 10px;        /* 하단 여백 */
 }
 
 /* 버튼에 호버 효과 추가 */
 button[type="submit"]:hover {
     background-color: #3163c9; /* 호버 시 배경색 */
+}
+
+/* todo-list 내부 섹션 제목 (진행중 / 완료) */
+.todo-section {
+    margin-bottom: 2rem;
+}
+
+.todo-section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 2px solid #4486F8;
+    padding-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.todo-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
