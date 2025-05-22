@@ -59,10 +59,15 @@ nav a:hover,
 }
 
 main {
-    height: 85vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* height 제거 */
+     display: flex;
+    flex-direction: row;         /* 가로 정렬 */
+    justify-content: space-between;
+    align-items: center;         /* 세로 중앙 정렬 */
+    padding: 80px 40px 40px 40px;  /* 상단 여백 늘림 */
+    gap: 40px;
+    height: calc(100vh - 120px);  /* 화면 높이에서 헤더(예상 80px) + 여백 빼기 */
+    box-sizing: border-box;
 }
 
 .form-box {
@@ -70,7 +75,7 @@ main {
     border: 1px solid #4486F8;
     border-radius: 16px;
     padding: 40px 30px;
-    width: 350px;
+    width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -132,4 +137,78 @@ button:hover {
 
 .signup-link a:hover {
     text-decoration: underline;
+}
+
+
+/* ===== 할 일 작성 폼 박스 스타일 ===== */
+.todo-form-box {
+    background-color: white;
+    border: 1px solid #4486F8;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
+.todo-form-box h2 {
+    text-align: center;
+    color: #4486F8;
+    margin-bottom: 35px; /* 간격 넓힘 */
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+/* 입력창 공통 스타일 */
+.todo-form-box .input-wrapper {
+    margin-bottom: 10px;
+}
+
+/* 텍스트 입력창 */
+.todo-form-box input[type="text"],
+.todo-form-box textarea {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1.5px solid #4486F8;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 14px;
+    resize: none; /* textarea 크기 조절 비활성화 */
+    font-family: 'Segoe UI', sans-serif; /* 여기 추가 */
+}
+
+/* textarea 높이 지정 */
+.todo-form-box textarea {
+    height: 100px;
+    line-height: 1.4;
+}
+
+/* 버튼 */
+.todo-form-box button {
+    width: 70%;
+    padding: 10px;
+    background-color: #4486F8;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 50px auto 10px auto; /* 가운데 정렬 (상-하-하단) */
+    display: block;              /* block으로 바꿔야 auto 정렬 가능 */
+}
+
+.todo-form-box button:hover {
+    background-color: #3163c9;
+}
+
+.form-box.todo-form-box {
+    width: 20%;
+    min-width: 250px;
+    height: 50%;
+     margin-left: 40px;
+}
+
+#todo-list {
+    width: 65%;
+    min-width: 300px;
 }
