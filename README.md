@@ -13,22 +13,23 @@ fastapi-web/
 │    ├── todo/
 │    │    ├── todo_crud.py
 │    │    ├── todo_router.py
-│    │    ├── todo_schema.py
+│    │    └── todo_schema.py
 │    ├── user/
 │    │    ├── user_crud.py
 │    │    ├── user_router.py
-│    │    ├── user_schema.py
+│    │    └── user_schema.py
 ├── templates/              # HTML 템플릿 폴더 
 │    ├── index.html
 │    ├── login.html
-│    ├── signup.html
+│    └── signup.html
 ├── static/                 # CSS, JS 등 정적 파일 폴더
 │    ├── style.css
 │    ├── main.css
 │    ├── main.js
 │    ├── login.js 
 │    ├── signup.js 
-│    ├── store.js
+│    └── store.js
+└── requirements.txt
 ```
 ## 🔒 회원 가입 API 명세
 
@@ -64,8 +65,10 @@ fastapi-web/
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
   "token_type": "bearer"
 }
-```json
+```
+
 - 로그인 실패 시
+```json
 {
   "detail": "아이디 또는 비밀번호가 일치하지 않습니다."
 }
