@@ -6,6 +6,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const welcomeMsg = document.getElementById("welcome-msg");
     const todoList = document.getElementById("todo-list");
 
+    // 투두 리스트 렌더링 함수
+    async function loadTodoList() {
+        const accessToken = localStorage.getItem("access_token");
+        if (!accessToken) return;
+
+        try {
+            const response = await fetch("/api/todo/list", {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            });
+
+            if (!response.ok) {
+                console.error("투두 리스트 불러오기 실패:", response.statusText);
+                return;
+            }
+
+            const todos = await response.json();
+
+            // todoList 초기화
+            todoList.innerHTML = "";
+
+            if (todos.length === 0) {
+                todoList.innerHTML = "<p>등록된 투두가 없습니다.</p>";
+                return;
+            }
+
+            todos.forEach(todo => {
+                const todoItem = document.createElement("div");
+                todoItem.classList.add("todo-item");
+
+                todoItem.innerHTML = `
+                    <h3>${todo.title}</h3>
+                    <p>${todo.description || ""}</p>
+                    <p>완료 여부: ${todo.is_completed ? "완료" : "미완료"}</p>
+                    <small>생성일: ${new Date(todo.created_at).toLocaleString()}</small>
+                `;
+
+                todoList.appendChild(todoItem);
+            });
+
+        } catch (error) {
+            console.error("투두 리스트 로드 중 오류 발생:", error);
+        }
+    }
+
     if (isLogin && username) {
         navbar.innerHTML = `
             <span>안녕하세요, ${username}님</span>
@@ -18,8 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (welcomeMsg) {
             welcomeMsg.style.display = "none"; 
         }
-        
+
         if (todoList) todoList.style.display = "block";  // 보여주기
+        loadTodoList();
 
         document.getElementById("logout-btn").addEventListener("click", (e) => {
             e.preventDefault();
@@ -68,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     alert("To-Do가 성공적으로 등록되었습니다.");
                     todoForm.reset();
-                    // 필요 시, 투두 리스트 갱신 함수 호출 가능
+                    loadTodoList();
                 } else if (response.status === 401) {
                     alert("인증 오류입니다. 다시 로그인해주세요.");
                     window.location.href = "/login";

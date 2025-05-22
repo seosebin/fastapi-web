@@ -4,7 +4,7 @@ from typing import List
 
 from database import get_db
 from domain.user import user_schema
-from domain.todo.todo_schema import TodoCreate
+from domain.todo.todo_schema import TodoCreate, TodoRead
 from domain.todo import todo_crud
 from domain.user import user_crud  # 유저 인증을 위한 함수 또는 모델
 
@@ -49,3 +49,12 @@ def create_todo(
 ):
     todo = todo_crud.create_todo(db=db, todo_create=todo_create, user_id=current_user.id)
     return todo
+
+# 투두 조회
+@router.get("/list", response_model=List[TodoRead])
+def get_todo_list(
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user)
+):
+    todo_list = todo_crud.get_todos_by_user(db, user_id=current_user.id)
+    return todo_list

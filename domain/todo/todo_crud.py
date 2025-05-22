@@ -13,3 +13,6 @@ def create_todo(db: Session, todo_create: TodoCreate, user_id: int):
     db.commit()
     db.refresh(db_todo)
     return db_todo
+
+def get_todos_by_user(db: Session, user_id: int):
+    return db.query(Todo).filter(Todo.user_id == user_id).order_by(Todo.created_at.desc()).all()
